@@ -1,0 +1,12 @@
+{
+  "name": "oliup-io/php-cs-oliup",
+  "description": "Oliup PHP code style rules for PHP-CS-Fixer",
+  "require-dev": {
+    "friendsofphp/php-cs-fixer": "^3.0"
+  },
+  "autoload": {
+    "files": [
+      "./src/helpers.php"
+    ]
+  }
+}
