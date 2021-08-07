@@ -1,5 +1,6 @@
 {
     "name": "oliup/php-cs-oliup",
+    "version": "1.0.0",
     "description": "Oliup PHP code style rules.",
     "require": {
         "php": ">=7.0"
