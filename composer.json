@@ -1,12 +1,21 @@
 {
-  "name": "oliup-io/php-cs-oliup",
-  "description": "Oliup PHP code style rules for PHP-CS-Fixer",
-  "require-dev": {
-    "friendsofphp/php-cs-fixer": "^3.0"
-  },
-  "autoload": {
-    "files": [
-      "./src/helpers.php"
-    ]
-  }
+    "name": "oliup/php-cs-oliup",
+    "description": "Oliup PHP code style rules.",
+    "require": {
+        "php": ">=7.0"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.0",
+        "friendsofphp/php-cs-fixer": "^3.0",
+        "phpcompatibility/php-compatibility": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "OLIUP\\PhpCS\\": "src"
+        }
+    },
+    "bin": [
+        "bin/php-cs-oliup"
+    ],
+    "prefer-stable": true
 }
