@@ -1,6 +1,7 @@
 # Oliup PHP code style rules helper
 
 You need to add this to your project `composer.json` file.
+
 ```
 "repositories": [
   {
@@ -13,13 +14,50 @@ You need to add this to your project `composer.json` file.
 # Installation
 
 Run
+
 ```shell
-composer require oliup-io/php-cs-oliup --dev
+composer require oliup/php-cs-oliup --dev
 ```
 
-## Setup PHP-CS-Fixer Finder config
+# Setup
+
+## For automatic setup
 
 Run
+
+```shell
+./vendor/bn/php-cs-oliup
+```
+
+## Manual setup
+
+### Setup [PHP Code Sniffer][php_codesniffer] config
+
+Run
+
+```shell
+touch phpcs.xml.dist
+```
+
+Your `phpcs.xml.dist` file content should look like
+
+```xml
+<?xml version="1.0"?>
+<ruleset>
+    <!-- Files or folders to sniff -->
+    <file>src</file>
+    <file>tests</file>
+
+    <!-- Path to our coding standard folder -->
+    <rule ref="vendor/oliup/php-cs-oliup/src"/>
+</ruleset>
+
+```
+
+### Setup [PHP-CS-Fixer][php_cs_fixer] config
+
+Run
+
 ```shell
 touch .php-cs-fixer.php
 ```
@@ -28,26 +66,38 @@ Your `.php-cs-fixer.php` file content should look like
 
 ```php
 <?php
-$finder = PhpCsFixer\Finder::create()
-  ->in([
-    __DIR__.'/src',
-    __DIR__.'/tests',
-  ]);
+
+use OLIUP\PhpCS\PhpCS;
+use PhpCsFixer\Finder;
+
+$finder = Finder::create();
+
+$finder->in([
+	__DIR__ . '/src',
+	__DIR__ . '/tests',
+]);
 
 $rules = [
-    // define your project custom rules here
+	// define your project custom rules here
 ];
 
-return OLIUP\PhpCS\mergeRules($finder, $rules);
+return (new PhpCS())->mergeRules($finder, $rules)
+					->setRiskyAllowed(true);
 
 ```
 
 # You're ready!!!
 
-Feel free to fix your code using
+To checks code style run:
 
 ```shell
-./vendor/bin/php-cs-fixer fix
+./vendor/bin/phpcs
+```
+
+To fix your code run:
+
+```shell
+./vendor/bin/php-cs-fixer fix --using-cache=no
 ```
 
 # Running in CI
@@ -55,5 +105,8 @@ Feel free to fix your code using
 You could do a “dry run”, which will fail if it detects code style violations.
 
 ```shell
-./vendor/bin/php-cs-fixer fix --dry-run
+./vendor/bin/php-cs-fixer fix --using-cache=no --dry-run
 ```
+
+[php_codesniffer]: https://github.com/squizlabs/php_codesniffer
+[php_cs_fixer]: https://github.com/friendsofphp/php-cs-fixer
