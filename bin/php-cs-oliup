@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+PHP_CODE_SNIFFER_CONFIG=phpcs.xml.dist
+PHP_CS_FIXER_CONFIG=.php-cs-fixer.php
+
+if [ ! -f "$PHP_CODE_SNIFFER_CONFIG" ]; then
+cat << "EOF" > "$PHP_CODE_SNIFFER_CONFIG"
+<?xml version="1.0"?>
+<ruleset>
+    <!-- Files or folders to sniff -->
+    <file>src</file>
+    <file>tests</file>
+
+    <!-- Path to our coding standard folder -->
+    <rule ref="vendor/oliup/php-cs-oliup/src"/>
+</ruleset>
+EOF
+fi
+
+if [ ! -f "$PHP_CS_FIXER_CONFIG" ]; then
+cat << "EOF" > "$PHP_CS_FIXER_CONFIG"
+<?php
+
+use OLIUP\PhpCS\PhpCS;
+use PhpCsFixer\Finder;
+
+$finder = Finder::create();
+
+$finder->in([
+	__DIR__ . '/src',
+	__DIR__ . '/tests',
+]);
+
+$rules = [
+	// define your project custom rules here
+];
+
+return (new PhpCS())->mergeRules($finder, $rules)
+					->setRiskyAllowed(true);
+EOF
+fi
