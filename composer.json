@@ -10,7 +10,7 @@
     },
     "autoload": {
         "psr-4": {
-            "OLIUP\\PhpCS\\": "src"
+            "OLIUP\\CS\\": "src"
         }
     },
     "bin": [

@@ -24,7 +24,7 @@ EOF
         cat << "EOF" > "$PHP_CS_FIXER_CONFIG"
 <?php
 
-use OLIUP\PhpCS\PhpCS;
+use OLIUP\CS\PhpCS;
 use PhpCsFixer\Finder;
 
 $finder = Finder::create();
@@ -36,7 +36,6 @@ $finder->in([
 
 $rules = [
     // define your project custom rules here
-    // learn more here: https://mlocati.github.io/php-cs-fixer-configurator
 ];
 
 return (new PhpCS())->mergeRules($finder, $rules)

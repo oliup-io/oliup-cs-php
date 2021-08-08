@@ -1,6 +1,6 @@
 <?php
 
-namespace OLIUP\PhpCS;
+namespace OLIUP\CS;
 
 use PhpCsFixer\Config;
 use PhpCsFixer\Finder;
