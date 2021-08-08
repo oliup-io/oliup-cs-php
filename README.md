@@ -56,5 +56,12 @@ You could do a “dry run”, which will fail if it detects code style violation
 vendor/bin/oliup-cs fix-ci
 ```
 
+# Learn more
+
+PHP Code Sniffer: [repo][php_codesniffer]
+
+PHP CS Fixer: [repo][php_cs_fixer] | [config creator][php_cs_fixer_config_creator]
+
 [php_codesniffer]: https://github.com/squizlabs/php_codesniffer
 [php_cs_fixer]: https://github.com/friendsofphp/php-cs-fixer
+[php_cs_fixer_config_creator]: https://mlocati.github.io/php-cs-fixer-configurator
