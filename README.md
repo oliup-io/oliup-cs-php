@@ -50,7 +50,7 @@ vendor/bin/oliup-cs fix
 
 # Running in CI
 
-You could do a “dry run”, which will fail if it detects code style violations.
+This will fail if it detects code style violations.
 
 ```shell
 vendor/bin/oliup-cs fix-ci
