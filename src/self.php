@@ -10,7 +10,7 @@ use PhpCsFixer\Finder;
 $finder = Finder::create();
 
 $finder->in([
-	__DIR__
+	__DIR__,
 ]);
 
 $rules = [
@@ -18,4 +18,4 @@ $rules = [
 ];
 
 return (new PhpCS())->mergeRules($finder, $rules)
-					->setRiskyAllowed(true);
+	->setRiskyAllowed(true);
