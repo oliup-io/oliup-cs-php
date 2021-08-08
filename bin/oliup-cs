@@ -1,0 +1,84 @@
+#!/usr/bin/env bash
+
+PHP_CODE_SNIFFER_CONFIG=phpcs.xml.dist
+PHP_CS_FIXER_CONFIG=.php-cs-fixer.dist.php
+
+init(){
+    if [ ! -f "$PHP_CODE_SNIFFER_CONFIG" ];
+    then
+        cat << "EOF" > "$PHP_CODE_SNIFFER_CONFIG"
+<?xml version="1.0"?>
+<ruleset>
+    <!-- Files or folders to sniff -->
+    <file>src</file>
+    <file>tests</file>
+
+    <!-- Path to our coding standard folder -->
+    <rule ref="vendor/oliup/oliup-cs-php/src"/>
+</ruleset>
+EOF
+    fi
+
+    if [ ! -f "$PHP_CS_FIXER_CONFIG" ];
+    then
+        cat << "EOF" > "$PHP_CS_FIXER_CONFIG"
+<?php
+
+use OLIUP\PhpCS\PhpCS;
+use PhpCsFixer\Finder;
+
+$finder = Finder::create();
+
+$finder->in([
+    __DIR__ . '/src',
+    __DIR__ . '/tests',
+]);
+
+$rules = [
+    // define your project custom rules here
+    // learn more here: https://mlocati.github.io/php-cs-fixer-configurator
+];
+
+return (new PhpCS())->mergeRules($finder, $rules)
+                    ->setRiskyAllowed(true);
+EOF
+    fi
+}
+
+action="$1"
+cs=vendor/bin/phpcs
+cs_fixer=vendor/bin/php-cs-fixer
+
+IFS='' # to preserve indentation in HEREDOC
+read -r -d '' usage <<- EOF
+Usage:
+    $0 check	check your code
+    $0 fix	fix your code
+    $0 fix-ci	fix in CI
+    $0 --help	will print this message
+EOF
+
+case $action in
+    check)
+        shift
+        $cs "$@"
+    ;;
+    fix)
+        shift
+        $cs_fixer fix --using-cache=no "$@"
+    ;;
+    fix-ci)
+        shift
+        $cs_fixer fix --using-cache=no --dry-run "$@"
+    ;;
+    init)
+        init
+    ;;
+    --help|-h)
+        echo $usage
+    ;;
+    *)
+        echo "Unknown command."
+        echo $usage
+    ;;
+esac
