@@ -77,8 +77,4 @@
 
 	<rule ref="PHPCompatibility"/>
     <config name="installed_paths" value="vendor/phpcompatibility/php-compatibility" />
-
-    <!-- We use at least PHP7 -->
-
-	<config name="testVersion" value="7.0-"/>
 </ruleset>

@@ -3,4 +3,8 @@
 	<description>This is config for this repo</description>
 	<file>src</file>
 	<rule ref="src" />
+
+    <!-- You should use at least PHP 7 -->
+
+	<config name="testVersion" value="7.0-"/>
 </ruleset>
