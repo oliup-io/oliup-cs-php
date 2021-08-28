@@ -4,7 +4,7 @@
  * PHP CS Fixer configs for this repo.
  */
 
-use OLIUP\PhpCS\PhpCS;
+use OLIUP\CS\PhpCS;
 use PhpCsFixer\Finder;
 
 $finder = Finder::create();
