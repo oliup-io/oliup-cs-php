@@ -1,20 +1,20 @@
 {
-    "name": "oliup/oliup-cs-php",
-    "version": "1.0.0",
-    "description": "Oliup PHP code style rules.",
-    "require": {
-        "php": ">=7.0",
-        "squizlabs/php_codesniffer": ">=3.6",
-        "friendsofphp/php-cs-fixer": ">=3.0",
-        "phpcompatibility/php-compatibility": ">=9.3"
-    },
-    "autoload": {
-        "psr-4": {
-            "OLIUP\\CS\\": "src"
-        }
-    },
-    "bin": [
-        "bin/oliup-cs"
-    ],
-    "prefer-stable": true
+	"name": "oliup/oliup-cs-php",
+	"version": "1.0.1",
+	"description": "Oliup PHP code style rules.",
+	"require": {
+		"php": ">=7.0",
+		"squizlabs/php_codesniffer": ">=3.6",
+		"friendsofphp/php-cs-fixer": ">=3.0",
+		"phpcompatibility/php-compatibility": ">=9.3"
+	},
+	"autoload": {
+		"psr-4": {
+			"OLIUP\\CS\\": "src"
+		}
+	},
+	"bin": [
+		"bin/oliup-cs"
+	],
+	"prefer-stable": true
 }
