@@ -11,7 +11,9 @@ $finder = Finder::create();
 
 $finder->in([
 	__DIR__,
-]);
+])
+->ignoreDotFiles(true)
+->ignoreVCS(true);
 
 $rules = [
 	// define your project custom rules here
