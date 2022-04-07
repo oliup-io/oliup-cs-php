@@ -18,6 +18,7 @@ return [
 	],
 	'concat_space'                           => ['spacing' => 'one'],
 	'phpdoc_tag_casing'                      => true,
+	'phpdoc_to_comment'                      => false,
 	'simplified_null_return'                 => false,
 	'no_unset_on_property'                   => false,
 	'single_line_comment_style'              => false,
