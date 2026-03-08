@@ -1,12 +1,30 @@
 {
 	"name": "oliup/oliup-cs-php",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"description": "Oliup PHP code style rules.",
+	"type": "library",
+	"keywords": [
+		"oliup",
+		"php",
+		"code style",
+		"coding standard",
+		"phpcs",
+		"php-cs-fixer",
+		"phpcompatibility",
+		"static analysis"
+	],
+	"authors": [
+		{
+			"name": "Emile Silas SARE",
+			"role": "lead",
+			"homepage": "https://github.com/silassare"
+		}
+	],
 	"require": {
-		"php": ">=7.0",
-		"squizlabs/php_codesniffer": ">=3.11.2",
-		"friendsofphp/php-cs-fixer": ">=3.65.0",
-		"phpcompatibility/php-compatibility": ">=9.3.5"
+		"php": ">=7.2.0",
+		"squizlabs/php_codesniffer": ">=3.13",
+		"friendsofphp/php-cs-fixer": ">=3.94",
+		"phpcompatibility/php-compatibility": ">=9.3"
 	},
 	"require-dev": {
 		"roave/security-advisories": "dev-latest"
