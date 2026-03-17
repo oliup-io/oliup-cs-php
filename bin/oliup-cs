@@ -16,9 +16,8 @@ init(){
     <!-- Path to our coding standard folder -->
     <rule ref="vendor/oliup/oliup-cs-php/src"/>
 
-    <!-- You should use at least PHP 7 -->
-
-	<config name="testVersion" value="7.0-"/>
+    <!-- You should use at least PHP 8.1 -->
+	<config name="testVersion" value="8.1-"/>
 </ruleset>
 EOF
     fi
