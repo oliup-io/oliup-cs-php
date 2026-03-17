@@ -24,9 +24,9 @@ class PhpCS extends Config
 	/**
 	 * Merge the project custom rules to our base rules.
 	 *
-	 * @return $this
+	 * @return static
 	 */
-	public function mergeRules(Finder $finder, array $rules = []): self
+	public function mergeRules(Finder $finder, array $rules = []): static
 	{
 		$rules = \array_merge(require __DIR__ . '/rules.php', $rules);
 
