@@ -22,7 +22,7 @@
 		<exclude name="Generic.WhiteSpace.DisallowTabIndent"/>
 	</rule>
 
-    <rule ref="Generic.WhiteSpace.DisallowSpaceIndent"/>
+	<rule ref="Generic.WhiteSpace.DisallowSpaceIndent"/>
 
 	<rule ref="Generic.WhiteSpace.ScopeIndent">
 		<properties>
@@ -63,7 +63,7 @@
 	<rule ref="Squiz.WhiteSpace.FunctionOpeningBraceSpace"/>
 
 	<!-- All language constructs must contain a single space between themselves and their content. -->
-	<rule ref="Squiz.WhiteSpace.LanguageConstructSpacing"/>
+	<rule ref="Generic.WhiteSpace.LanguageConstructSpacing"/>
 
 	<!-- Verifies that operators have valid spacing surrounding them. -->
 	<rule ref="Squiz.WhiteSpace.LogicalOperatorSpacing"/>
@@ -75,6 +75,5 @@
 		</properties>
 	</rule>
 
-    <config name="installed_paths" value="vendor/phpcompatibility/php-compatibility" />
-    <rule ref="PHPCompatibility"/>
+	<rule ref="PHPCompatibility"/>
 </ruleset>
