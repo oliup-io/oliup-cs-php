@@ -1,8 +1,22 @@
-# Oliup PHP code style rules helper
+# oliup-cs-php
 
-You need to add this to your project `composer.json` file.
+Oliup PHP coding standards - a unified code style ruleset for PHP 8.1+ projects, combining [PHP_CodeSniffer][php_codesniffer] and [PHP-CS-Fixer][php_cs_fixer].
 
-```
+**Includes:**
+
+- PSR-12 + PhpCsFixer rules via PHP-CS-Fixer
+- PHPCompatibility checks via PHP_CodeSniffer
+- Custom Oliup whitespace, array, and safety sniffs
+
+## Requirements
+
+- PHP `^8.1`
+
+## Installation
+
+Add the VCS repository to your project's `composer.json`:
+
+```json
 "repositories": [
   {
     "type": "vcs",
@@ -11,56 +25,84 @@ You need to add this to your project `composer.json` file.
 ]
 ```
 
-# Installation
-
-Run
+Then run:
 
 ```shell
 composer require oliup/oliup-cs-php --dev
 ```
 
-# Setup
+## Setup
 
-Run
+Run the init command to generate config files in your project root:
 
 ```shell
 vendor/bin/oliup-cs init
 ```
 
-Two file will be created:
+Two files will be created:
 
-- `phpcs.dist.xml` [PHP Code Sniffer][php_codesniffer] config
-- `.php-cs-fixer.dist.php` [PHP-CS-Fixer][php_cs_fixer] config
+- `phpcs.xml.dist` - [PHP_CodeSniffer][php_codesniffer] config
+- `.php-cs-fixer.dist.php` - [PHP-CS-Fixer][php_cs_fixer] config
 
-> Both `phpcs.dist.xml` and `.php-cs-fixer.dist.php` files should be committed to git.
+> Commit both files to version control.
 
-You're ready!!!
+Adjust the `testVersion` in `phpcs.xml.dist` to match your project's minimum supported PHP version:
 
-To checks code style run:
+```xml
+<config name="testVersion" value="8.1-"/>
+```
+
+## Usage
+
+Check for code style violations:
 
 ```shell
 vendor/bin/oliup-cs check
 ```
 
-To fix your code run:
+Automatically fix violations:
 
 ```shell
 vendor/bin/oliup-cs fix
 ```
 
-# Running in CI
+## CI
 
-This will fail if it detects code style violations.
+Dry-run fix - exits with a non-zero code if any violations are found:
 
 ```shell
 vendor/bin/oliup-cs fix-ci
 ```
 
-# Learn more
+## Customizing rules
 
-PHP Code Sniffer: [repo][php_codesniffer]
+Edit `.php-cs-fixer.dist.php` to add or override PHP-CS-Fixer rules:
 
-PHP CS Fixer: [repo][php_cs_fixer] | [config creator][php_cs_fixer_config_creator]
+```php
+$rules = [
+    // add your project-specific rules here
+];
+
+return (new PhpCS())->mergeRules($finder, $rules)
+                    ->setRiskyAllowed(true);
+```
+
+Edit `phpcs.xml.dist` to add or exclude PHP_CodeSniffer sniffs:
+
+```xml
+<ruleset>
+    <file>src</file>
+    <file>tests</file>
+    <rule ref="vendor/oliup/oliup-cs-php/src"/>
+    <config name="testVersion" value="8.1-"/>
+</ruleset>
+```
+
+## Learn more
+
+- PHP_CodeSniffer: [squizlabs/php_codesniffer][php_codesniffer]
+- PHP-CS-Fixer: [friendsofphp/php-cs-fixer][php_cs_fixer] | [rule configurator][php_cs_fixer_config_creator]
+- PHPCompatibility: [PHPCompatibility/PHPCompatibility](https://github.com/PHPCompatibility/PHPCompatibility)
 
 [php_codesniffer]: https://github.com/squizlabs/php_codesniffer
 [php_cs_fixer]: https://github.com/friendsofphp/php-cs-fixer
