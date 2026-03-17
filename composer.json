@@ -1,6 +1,5 @@
 {
 	"name": "oliup/oliup-cs-php",
-	"version": "1.0.3",
 	"description": "Oliup PHP code style rules.",
 	"type": "library",
 	"keywords": [
