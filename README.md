@@ -1,6 +1,6 @@
 # oliup-cs-php
 
-Oliup PHP coding standards - a unified code style ruleset for PHP 8.1+ projects, combining [PHP_CodeSniffer][php_codesniffer] and [PHP-CS-Fixer][php_cs_fixer].
+Oliup PHP coding standards - a unified code style ruleset for PHP 8.3+ projects, combining [PHP_CodeSniffer][php_codesniffer] and [PHP-CS-Fixer][php_cs_fixer].
 
 **Includes:**
 
@@ -10,7 +10,7 @@ Oliup PHP coding standards - a unified code style ruleset for PHP 8.1+ projects,
 
 ## Requirements
 
-- PHP `^8.1`
+- PHP `^8.3`
 
 ## Installation
 
@@ -49,7 +49,7 @@ Two files will be created:
 Adjust the `testVersion` in `phpcs.xml.dist` to match your project's minimum supported PHP version:
 
 ```xml
-<config name="testVersion" value="8.1-"/>
+<config name="testVersion" value="8.3-"/>
 ```
 
 ## Usage
@@ -94,7 +94,7 @@ Edit `phpcs.xml.dist` to add or exclude PHP_CodeSniffer sniffs:
     <file>src</file>
     <file>tests</file>
     <rule ref="vendor/oliup/oliup-cs-php/src"/>
-    <config name="testVersion" value="8.1-"/>
+    <config name="testVersion" value="8.3-"/>
 </ruleset>
 ```
 

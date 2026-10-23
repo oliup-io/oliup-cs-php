@@ -4,6 +4,6 @@
 	<file>src</file>
 	<rule ref="src" />
 
-    <!-- You should use at least PHP 8.1 -->
-	<config name="testVersion" value="8.1-"/>
+    <!-- You should use at least PHP 8.3 -->
+	<config name="testVersion" value="8.3-"/>
 </ruleset>
