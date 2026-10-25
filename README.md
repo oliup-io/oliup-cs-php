@@ -10,7 +10,7 @@ Oliup PHP coding standards - a unified code style ruleset for PHP 8.3+ projects,
 
 ## Requirements
 
-- PHP `^8.3`
+- PHP `^8.5`
 
 ## Installation
 
@@ -49,7 +49,7 @@ Two files will be created:
 Adjust the `testVersion` in `phpcs.xml.dist` to match your project's minimum supported PHP version:
 
 ```xml
-<config name="testVersion" value="8.3-"/>
+<config name="testVersion" value="8.5-"/>
 ```
 
 ## Usage
@@ -94,7 +94,7 @@ Edit `phpcs.xml.dist` to add or exclude PHP_CodeSniffer sniffs:
     <file>src</file>
     <file>tests</file>
     <rule ref="vendor/oliup/oliup-cs-php/src"/>
-    <config name="testVersion" value="8.3-"/>
+    <config name="testVersion" value="8.5-"/>
 </ruleset>
 ```
 

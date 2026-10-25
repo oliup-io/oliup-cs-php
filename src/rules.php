@@ -32,7 +32,12 @@ return [
 	'simplified_null_return'                 => false,
 	'no_unset_on_property'                   => false,
 	'single_line_comment_style'              => false,
-	'no_superfluous_phpdoc_tags'             => false,
+	// Strips a `@param`/`@return` that only restates the signature, and keeps every one that carries a
+	// description. Two sources of truth for one type is what this removes; the type stays in the code.
+	'no_superfluous_phpdoc_tags'             => [
+		'allow_mixed'       => false,
+		'remove_inheritdoc' => true,
+	],
 	'binary_operator_spaces'                 => [
 		'operators' => [
 			'='  => 'align',

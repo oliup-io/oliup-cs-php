@@ -23,8 +23,6 @@ class PhpCS extends Config
 {
 	/**
 	 * Merge the project custom rules to our base rules.
-	 *
-	 * @return static
 	 */
 	public function mergeRules(Finder $finder, array $rules = []): static
 	{

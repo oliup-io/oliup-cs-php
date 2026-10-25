@@ -21,14 +21,14 @@
 	],
 	"config": {
 		"platform": {
-			"php": "8.3.36"
+			"php": "8.5.12"
 		},
 		"allow-plugins": {
 			"dealerdirect/phpcodesniffer-composer-installer": true
 		}
 	},
 	"require": {
-		"php": ">=8.3",
+		"php": ">=8.5",
 		"squizlabs/php_codesniffer": "^4.0",
 		"friendsofphp/php-cs-fixer": "^3.94",
 		"phpcompatibility/php-compatibility": "^10.0@alpha"
