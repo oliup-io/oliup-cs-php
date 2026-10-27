@@ -98,6 +98,23 @@ Edit `phpcs.xml.dist` to add or exclude PHP_CodeSniffer sniffs:
 </ruleset>
 ```
 
+## Two docblock tags `no_superfluous_phpdoc_tags` removes that psalm needs
+
+The rule drops a `@param` or `@return` whose type matches the native one and that carries no
+description. Twice that type is not redundant to a static analyser, and the tag has to be kept by
+giving it a description, or the analyser starts reporting calls that are perfectly valid:
+
+- **`@return static` on a fluent method of a generic class** (one with a class-level `@template`).
+  psalm reads the native `static` as the class that *declares* the method, not the one it was
+  called on, so a subclass's own methods become undefined on the other side of a chain. A plain
+  class is unaffected, which is why this only shows up where generics are in play.
+- **`@param` on a method that widens a parent's documented parameter type.** psalm inherits a
+  parent's `@param` into an override that documents none of its own, so a child declaring
+  `Action|string` where the parent documented `string` is read as `string` alone.
+
+Neither shows up in the package that owns the base class: both surface in a subclass, often in
+another package. A chain written in a file the analyser reads is what catches them.
+
 ## Learn more
 
 - PHP_CodeSniffer: [squizlabs/php_codesniffer][php_codesniffer]

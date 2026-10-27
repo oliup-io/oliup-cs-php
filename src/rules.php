@@ -27,6 +27,10 @@ return [
 		'include' => ['@internal'],
 	],
 	'concat_space'                           => ['spacing' => 'one'],
+	// `new Foo()->bar()` rather than `(new Foo())->bar()`. PHP 8.4 made the wrapping parentheses
+	// optional and every package here requires 8.5, so one of the two forms has to be the house one
+	// or both appear side by side; this is the rule that picks, instead of each reader picking.
+	'new_expression_parentheses'             => true,
 	'phpdoc_tag_casing'                      => true,
 	'phpdoc_to_comment'                      => false,
 	'simplified_null_return'                 => false,
