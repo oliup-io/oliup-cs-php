@@ -31,6 +31,10 @@ return [
 	// optional and every package here requires 8.5, so one of the two forms has to be the house one
 	// or both appear side by side; this is the rule that picks, instead of each reader picking.
 	'new_expression_parentheses'             => true,
+	// PHPUnit 13 reads no doc-comment metadata and reports none it finds, so a `@dataProvider` left
+	// behind makes a test run with no arguments and a `@group` makes a `--group` match nothing. The
+	// attribute is the only form that works, and this is what keeps a new test from using the other.
+	'php_unit_attributes'                    => true,
 	'phpdoc_tag_casing'                      => true,
 	'phpdoc_to_comment'                      => false,
 	'simplified_null_return'                 => false,

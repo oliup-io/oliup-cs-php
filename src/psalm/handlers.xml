@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    The issue levels every Oliup PHP package analyses at, included by each repository's `psalm.xml`:
+
+        <psalm xmlns:xi="http://www.w3.org/2001/XInclude" ...>
+            <xi:include href="vendor/oliup/oliup-cs-php/src/psalm/handlers.xml"/>
+        </psalm>
+
+    A package adds what only it needs in an `<issueHandlers>` of its own, below the include. What is
+    here is not repeated there: one of the two would be edited and the other left behind, which is
+    how seven packages ended up analysing at seven different levels.
+-->
+<issueHandlers xmlns="https://getpsalm.org/schema/config">
+    <!--
+        Level 4, with no baseline, plus the checks level 3 would add that the code already has no
+        occurrence of, so none can appear: dereferencing, iterating or indexing what may be null or
+        false, a possibly undefined variable, a risky cast. Left out, as level 4 leaves them out: a
+        `false` or `null` a function may return passed on as an argument, and annotation precision.
+    -->
+    <NonInvariantDocblockPropertyType errorLevel="error"/>
+    <PossiblyFalseIterator errorLevel="error"/>
+    <PossiblyFalseOperand errorLevel="error"/>
+    <PossiblyFalsePropertyAssignmentValue errorLevel="error"/>
+    <PossiblyFalseReference errorLevel="error"/>
+    <PossiblyInvalidArrayAssignment errorLevel="error"/>
+    <PossiblyInvalidClone errorLevel="error"/>
+    <PossiblyInvalidFunctionCall errorLevel="error"/>
+    <PossiblyInvalidIterator errorLevel="error"/>
+    <PossiblyInvalidMethodCall errorLevel="error"/>
+    <PossiblyInvalidOperand errorLevel="error"/>
+    <PossiblyInvalidPropertyAssignment errorLevel="error"/>
+    <PossiblyInvalidPropertyFetch errorLevel="error"/>
+    <PossiblyNullArrayAccess errorLevel="error"/>
+    <PossiblyNullArrayAssignment errorLevel="error"/>
+    <PossiblyNullIterator errorLevel="error"/>
+    <PossiblyNullPropertyAssignment errorLevel="error"/>
+    <PossiblyNullPropertyFetch errorLevel="error"/>
+    <PossiblyNullReference errorLevel="error"/>
+    <PossiblyUndefinedGlobalVariable errorLevel="error"/>
+    <PossiblyUndefinedVariable errorLevel="error"/>
+    <RiskyCast errorLevel="error"/>
+
+    <!--
+        PHP 8.5 deprecates every form of null array offset, `isset()`, `??` and `empty()` included, so
+        a possibly-null offset is a deprecation waiting to be triggered, not a style question.
+    -->
+    <NullArrayOffset errorLevel="error"/>
+    <PossiblyNullArrayOffset errorLevel="error"/>
+
+    <!--
+        These packages are libraries: what they export is called from outside, so psalm sees no call
+        to it and would report every public entry point as dead. A package that is an application
+        rather than a library wants these back on.
+    -->
+    <PossiblyUnusedMethod errorLevel="suppress"/>
+    <PossiblyUnusedParam errorLevel="suppress"/>
+    <PossiblyUnusedProperty errorLevel="suppress"/>
+    <PossiblyUnusedReturnValue errorLevel="suppress"/>
+    <UnusedClass errorLevel="suppress"/>
+
+    <!--
+        Reported where the code is right and the inference is not: a variable declared null before a
+        branch fills it, a check psalm reads as redundant because it cannot see the caller, a
+        `__toString()` psalm would rather see called by hand.
+    -->
+    <ImplicitToStringCast errorLevel="suppress"/>
+    <InvalidOperand errorLevel="suppress"/>
+    <RedundantCondition errorLevel="suppress"/>
+    <TypeDoesNotContainNull errorLevel="suppress"/>
+    <UnusedFunctionCall errorLevel="suppress"/>
+    <UnusedVariable errorLevel="suppress"/>
+</issueHandlers>
