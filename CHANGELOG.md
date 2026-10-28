@@ -46,6 +46,13 @@ This file starts after `v1.0.3`. What came before it is the repository's tags an
 - **`new_expression_parentheses`**: `new Foo()` keeps its parentheses, which PHP 8.4's
   `new Foo()->bar()` needs anyway.
 
+- **`@PHP8x5Migration` and `@PHP8x5Migration:risky`**: the floor moved to PHP 8.5 and nothing
+  followed it, so every file kept the syntax of the year it was written. The two sets write the
+  current one: `$x::class` over `get_class($x)`, `0o755` over `0755`, an arrow function over a
+  closure that only returns, a heredoc indented with the code around it. Risky was already the
+  house default (`@PhpCsFixer:risky`, and `setRiskyAllowed(true)` in every repository's config), and
+  the rules that matter here are in the risky half, so both sets are on.
+
 - **`no_superfluous_phpdoc_tags`** is on, with `remove_inheritdoc`: a `@param` or `@return` that
   only restates the signature is stripped, and one carrying a description is kept. Two sources of
   truth for one type is what this removes; the type stays in the code.

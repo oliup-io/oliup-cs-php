@@ -18,6 +18,14 @@ return [
 	'@PSR12'                                 => true,
 	'@PhpCsFixer'                            => true,
 	'@PhpCsFixer:risky'                      => true,
+	// Every package here requires PHP 8.5, and these two sets are what writes the 8.5 idiom instead
+	// of leaving each file at the syntax of the year it was written: `$x::class` over `get_class($x)`,
+	// `0o755` over `0755`, an arrow function over a closure that only returns, a heredoc indented with
+	// its code. Without them the floor was raised and nothing followed it. Risky is the house default
+	// already (`@PhpCsFixer:risky` above, `setRiskyAllowed(true)` in every repository's config), so the
+	// risky half comes too: the rules it adds are the ones that matter here.
+	'@PHP8x5Migration'                       => true,
+	'@PHP8x5Migration:risky'                 => true,
 	'multiline_whitespace_before_semicolons' => true,
 	'simplified_if_return'                   => true,
 	'global_namespace_import'                => true,
