@@ -20,6 +20,20 @@ This file starts after `v1.0.3`. What came before it is the repository's tags an
 
 ### Added
 
+- **A `null` passed into a parameter that is not nullable is an error**
+  (`PossiblyNullArgument`, `src/psalm/handlers.xml`). It is the one check raised while the packages
+  still have occurrences of it, and the reason is what it costs when it is only information: under
+  strict types it is a `TypeError` at the first call that takes that branch, in production. One
+  shipped that way in blate, whose refusal of a template extending itself compared a path against
+  the template's own, which is null for a template compiled from a string; the analyser had printed
+  the file, the line and the column, at a level that reads as noise.
+
+  A package fails this gate the moment its own lock takes this file, which is each package's own
+  moment and not a flag day. The counts when it was raised: `kli` 1, `code-generator` 1,
+  `php-utils` 4, `blate` 9, `ozone` 50, `gobl` 62, `ozone-oweb` 0. No baseline, for the reason this
+  config has none anywhere: a baseline is a list nobody reads, and the next occurrence joins it in
+  silence. `PossiblyFalseArgument`, the other half of what level 3 would add, stays off.
+
 - **The static analysis levels are one file every package includes**: `src/psalm/handlers.xml`,
   pulled into a package's `psalm.xml` from `vendor/` with
   `<xi:include href="vendor/oliup/oliup-cs-php/src/psalm/handlers.xml"/>` on a config carrying

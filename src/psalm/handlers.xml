@@ -15,8 +15,8 @@
     <!--
         Level 4, with no baseline, plus the checks level 3 would add that the code already has no
         occurrence of, so none can appear: dereferencing, iterating or indexing what may be null or
-        false, a possibly undefined variable, a risky cast. Left out, as level 4 leaves them out: a
-        `false` or `null` a function may return passed on as an argument, and annotation precision.
+        false, a possibly undefined variable, a risky cast. Left out, as level 4 leaves them out:
+        annotation precision, and a `false` a function may return passed on as an argument.
     -->
     <NonInvariantDocblockPropertyType errorLevel="error"/>
     <PossiblyFalseIterator errorLevel="error"/>
@@ -47,6 +47,23 @@
     -->
     <NullArrayOffset errorLevel="error"/>
     <PossiblyNullArrayOffset errorLevel="error"/>
+
+    <!--
+        The one check here raised while the code still has occurrences of it, and the exception is
+        argued rather than assumed: passing a `null` a function may return into a parameter that is
+        not nullable is a `TypeError` at the first call that takes that branch, under strict types,
+        in production. It was reported as information and read as noise, and that is how a template
+        engine shipped a refusal comparing a path against one that is null for a template compiled
+        from a string: one `TypeError` in an editor, where the analyser had printed the line and the
+        column.
+
+        What this costs: a package that does not satisfy it yet fails this gate the moment its lock
+        takes this file, which is each package's own moment rather than a flag day. There are a
+        handful of sites in most of them and around fifty in each of the two largest, and clearing
+        them is the work. A baseline is not the answer, for the reason there is none above: it is a
+        list nobody reads, and the next occurrence would join it in silence.
+    -->
+    <PossiblyNullArgument errorLevel="error"/>
 
     <!--
         These packages are libraries: what they export is called from outside, so psalm sees no call
