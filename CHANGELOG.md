@@ -32,10 +32,14 @@ This file starts after `v1.0.3`. What came before it is the repository's tags an
   It is reported, never fixed: a block cannot say whether it belongs to the declaration below it,
   which would make the fix a merge, or to one that moved away, which would make it a move, and a
   tool guessing between those two writes a wrong contract onto a real signature. The counts when it
-  was added: `gobl` 1, `blate` 1, `ozone` 4, every other package 0, with four of the six written in
-  the two days before the sniff existed, by inserting a member above the next signature instead of
-  below the previous closing brace. Per line, `// phpcs:ignore Oliup.Commenting.StrandedDocBlock`
-  where a file really means it.
+  was added: `ozone` 10, `gobl` 1, `blate` 1, every other package 0, all twelve from a member
+  inserted above a block instead of below the closing brace before it. Per line,
+  `// phpcs:ignore Oliup.Commenting.StrandedDocBlock` where a file really means it.
+
+  Two of ozone's twelve were a pair of stacked `/** @var */` annotations, where only the lower one
+  attaches to the statement, and placing each on the statement it types uncovered a `TypeError` in
+  production code that the ignored annotation had kept from the analyser for five releases. That is
+  the cost this sniff is for: the shape is cheap to see and what it hides is not.
 
   The sniffs live in a nested standard, `src/Oliup/`, because phpcs resolves a sniff's class from
   its directory: a sniff under `src/` would have to be named `src\Sniffs\...`. A package needs no
