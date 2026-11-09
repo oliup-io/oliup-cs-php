@@ -43,7 +43,10 @@
 	"autoload": {
 		"psr-4": {
 			"OLIUP\\CS\\": "src"
-		}
+		},
+		"exclude-from-classmap": [
+			"src/Oliup/"
+		]
 	},
 	"bin": [
 		"bin/oliup-cs"

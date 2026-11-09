@@ -20,6 +20,29 @@ This file starts after `v1.0.3`. What came before it is the repository's tags an
 
 ### Added
 
+- **A docblock separated from its declaration is an error**
+  (`Oliup.Commenting.StrandedDocBlock`, `src/Oliup/Sniffs/Commenting/StrandedDocBlockSniff.php`),
+  the first sniff of this standard's own. It reports a docblock followed by another docblock, by
+  the closing brace of the block it sits in, or by nothing: three shapes of the same fault, a block
+  describing nothing with a declaration under it carrying a contract written for something else.
+  Nothing else reports it. php-cs-fixer formats both blocks and calls the file clean, psalm reads
+  the attached one and has no opinion on the other, and no test fails, so what is left is
+  documentation pointing at the wrong code, which costs more than none because it is believed.
+
+  It is reported, never fixed: a block cannot say whether it belongs to the declaration below it,
+  which would make the fix a merge, or to one that moved away, which would make it a move, and a
+  tool guessing between those two writes a wrong contract onto a real signature. The counts when it
+  was added: `gobl` 1, `blate` 1, `ozone` 4, every other package 0, with four of the six written in
+  the two days before the sniff existed, by inserting a member above the next signature instead of
+  below the previous closing brace. Per line, `// phpcs:ignore Oliup.Commenting.StrandedDocBlock`
+  where a file really means it.
+
+  The sniffs live in a nested standard, `src/Oliup/`, because phpcs resolves a sniff's class from
+  its directory: a sniff under `src/` would have to be named `src\Sniffs\...`. A package needs no
+  configuration for them, since it already points phpcs at `vendor/oliup/oliup-cs-php/src`, and
+  that directory is excluded from the classmap (`autoload.exclude-from-classmap`) because the
+  namespace is the standard's, not the package's.
+
 - **A `null` passed into a parameter that is not nullable is an error**
   (`PossiblyNullArgument`, `src/psalm/handlers.xml`). It is the one check raised while the packages
   still have occurrences of it, and the reason is what it costs when it is only information: under

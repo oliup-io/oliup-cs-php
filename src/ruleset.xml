@@ -104,4 +104,11 @@
 	</rule>
 
 	<rule ref="PHPCompatibility"/>
+
+	<!--
+		The sniffs of this standard's own, in a nested standard so their class names match their
+		directory, which is how phpcs resolves a sniff. A package needs no change for them: it
+		already points phpcs here.
+	-->
+	<rule ref="./Oliup/ruleset.xml"/>
 </ruleset>

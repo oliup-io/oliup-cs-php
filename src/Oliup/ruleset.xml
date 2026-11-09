@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<ruleset name="Oliup">
+	<description>
+		The sniffs of this standard's own, for a fault no upstream sniff reports. Included by
+		`../ruleset.xml`, so a package that already points phpcs at
+		`vendor/oliup/oliup-cs-php/src` takes them with its next lock update and needs no
+		configuration of its own.
+	</description>
+</ruleset>
